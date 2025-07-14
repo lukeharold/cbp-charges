@@ -116,7 +116,7 @@ const CBPChargesMap = () => {
     <div className="flex flex-col gap-2">
       <div className="bg-blue-800 text-white p-2 shadow">
         <h2 className="text-lg font-bold">Federal charges against U.S. CBP agents for drug trafficking and human smuggling</h2>
-        <p className="text-sm">Data compiled manually. Coding by Claude.ai. Last updated April 13, 2025.</p>
+        <p className="text-sm">Data compiled manually by Luke Harold. Coding by Claude.ai. Last updated July 13, 2025.</p>
         {loading && <span className="text-sm ml-2">Loading incident data...</span>}
       </div>
       
