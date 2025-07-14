@@ -9,12 +9,12 @@ const CBPChargesMap = () => {
   
   // Hardcoded incident data (extracted from CSV)
   const incidentData = [
-    {"lat":32.5769776,"lng":-116.6271396,"defendant":"Jesse Clark Garcia","caseType":"drug trafficking","chargesDate":"5/3/2024","narrative":"CBP agent faces grand jury charges for allegedly coordinating with drug smugglers to allow drugs through ports of entry, including Tecate.","caseStatus":"Pleaded guilty","sentence":"TBD","source":"https://storage.courtlistener.com/recap/gov.uscourts.casd.790810/gov.uscourts.casd.790810.1.0.pdf"},
+    {"lat":32.5769776,"lng":-116.6271396,"defendant":"Jesse Clark Garcia","caseType":"drug trafficking","chargesDate":"5/3/2024","narrative":"CBP agent faces grand jury charges for allegedly coordinating with drug smugglers to allow drugs through ports of entry, including Tecate.","caseStatus":"<a href='https://www.sandiegouniontribune.com/2025/07/09/former-san-diego-cbp-officer-admits-allowing-drugs-through-port-of-entry/' target='_blank' rel='noopener noreferrer'>Pleaded guilty</a>","sentence":"TBD","source":"https://storage.courtlistener.com/recap/gov.uscourts.casd.790810/gov.uscourts.casd.790810.1.0.pdf"},
     {"lat":32.5525843,"lng":-116.9359025,"defendant":"Diego Bonilla","caseType":"drug trafficking","chargesDate":"5/3/2024","narrative":"CBP agent faces grand jury charges for allegedly coordinating with drug smugglers to allow drugs through ports of entry, including Otay Mesa, and alerted smugglers that they were being tailed by other agents who were covertly trying to find info on stash houses and other associates.","caseStatus":"In progress","sentence":"n/a","source":"https://storage.courtlistener.com/recap/gov.uscourts.casd.790810/gov.uscourts.casd.790810.1.0.pdf"},
     {"lat":31.7500809,"lng":-106.4869612,"defendant":"Manuel Perez Jr.","caseType":"human smuggling","chargesDate":"2/5/2025","narrative":"CBP agent allegedly coordinated with smugglers to allow undocumented migrants into the U.S. at the Paso Del Norte Port of Entry. El Paso Times reported that a federal agent testified that the CBP agent was a member of the La Linea drug trafficking organization.","caseStatus":"In progress","sentence":"n/a","source":"https://www.documentcloud.org/documents/25880278-06e6cb08-543b-4849-a910-a43c55e467e7/"},
     {"lat":32.5442138,"lng":-117.0303764,"defendant":"Leonard Darnell George","caseType":"drug trafficking, human smuggling","chargesDate":"6/28/2023","narrative":"Former CBP agent Leonard Darnell George was sentenced to 23 years in prison for accepting bribes to allow drugs and undocumented migrants across the border.","caseStatus":"Convicted","sentence":"23 years in prison","source":"https://www.documentcloud.org/documents/25880295-archived-cbp-officer-sent-to-prison-for-receiving-bribes-to-allow-drug-laden-vehicles-and-unauthorized-immigrants-to-enter-the-us-ice/"},
     {"lat":31.6726262,"lng":-106.3341631,"defendant":"Omar Moreno","caseType":"human smuggling","chargesDate":"2/26/2024","narrative":"Former CBP agent Omar Moreno was convicted of coordinating with smugglers to illegally cross undocumented migrants into the U.S. at the Ysleta Port of Entry.","caseStatus":"Convicted","sentence":"4 years in prison","source":"https://www.documentcloud.org/documents/25880306-7d196599-bc33-49b1-ab3f-a41d64907d86/"},
-    {"lat":32.5442138,"lng":-117.0303764,"defendant":"Farlis Almonte, Ricardo Rodriguez, Kairy Stephania Quinonez, Jaime Torres Jr.","caseType":"human smuggling","chargesDate":"3/25/2025","narrative":"Three CBP agents allegedly conspired with smugglers to bring undocumented migrants into the U.S. while they were managing vehicle lanes at the San Ysidro Port of Entry. One other individual was also charged.","caseStatus":"In progress","sentence":"n/a","source":"https://storage.courtlistener.com/recap/gov.uscourts.casd.813397/gov.uscourts.casd.813397.20.0.pdf"},
+    {"lat":32.5442138,"lng":-117.0303764,"defendant":"Farlis Almonte, Ricardo Rodriguez, Kairy Stephania Quinonez, Jaime Torres Jr.","caseType":"human smuggling","chargesDate":"3/25/2025","narrative":"Three CBP agents allegedly conspired with smugglers to bring undocumented migrants into the U.S. while they were managing vehicle lanes at the San Ysidro Port of Entry. One other individual faces charges.","caseStatus":"In progress","sentence":"n/a","source":"https://www.documentcloud.org/documents/25880443-1/"},
     {"lat":32.2755567,"lng":-112.7416168,"defendant":"Carlos Victor Passapera Pinott","caseType":"drug trafficking","chargesDate":"8/10/2020","narrative":"A former CBP agent in Arizona, assigned to the Ajo Border Patrol Station, was sentenced to 15 years in prison after investigators saw him load duffel bags with heroin, fentanyl, cocaine and 350,000 pills into another car.","caseStatus":"Convicted","sentence":"15 years in prison","source":"https://storage.courtlistener.com/recap/gov.uscourts.azd.1249970/gov.uscourts.azd.1249970.1.0.pdf"},
     {"lat":32.63547814,"lng":-116.9219853,"defendant":"Hector Hernandez","caseType":"drug trafficking","chargesDate":"5/11/2023","narrative":"A Border Patrol agent was convicted after meeting with an undercover DHS agent and agreed to help smuggle migrants across the border for $5,000, which he received during a meeting in the Otay Lakes section of San Diego. Then he agreed to transport meth in a duffle bag for $20,000.","caseStatus":"Convicted","sentence":"7 years in prison","source":"https://www.documentcloud.org/documents/25893646-023b8df5-6488-44ca-9a4c-b2dc51e51304/"},
     {"lat":27.502685,"lng":-99.5026627,"defendant":"Emanuel Isac Celedon","caseType":"drug trafficking, human smuggling","chargesDate":"11/28/2023","narrative":"A Border Patrol agent was convicted of coordinating with Cartel del Noreste to bring drugs and migrants across the border through his inspection lanes at the Lincoln Juarez Port of Entry in Laredo.","caseStatus":"Convicted","sentence":"10 years in prison","source":"https://www.justice.gov/usao-sdtx/pr/former-federal-officer-sentenced-smuggling-aliens-and-receiving-bribes-cartel#:~:text=Emanuel%20Isac%20Celedon%2C%2037%2C%20Laredo,Entry%20(POE)%20in%20Laredo."}
@@ -28,16 +28,11 @@ const CBPChargesMap = () => {
 
   useEffect(() => {
     if (!loading && incidents.length > 0 && mapContainerRef.current) {
-      // Load Leaflet scripts dynamically
+      // Load Leaflet scripts dynamically (CSS now loaded from HTML)
       const script = document.createElement('script');
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js';
       script.onload = initMap;
       
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css';
-      
-      document.head.appendChild(link);
       document.head.appendChild(script);
       
       return () => {
@@ -47,9 +42,6 @@ const CBPChargesMap = () => {
         }
         if (document.head.contains(script)) {
           document.head.removeChild(script);
-        }
-        if (document.head.contains(link)) {
-          document.head.removeChild(link);
         }
       };
     }
@@ -124,7 +116,7 @@ const CBPChargesMap = () => {
     <div className="flex flex-col gap-2">
       <div className="bg-blue-800 text-white p-2 shadow">
         <h2 className="text-lg font-bold">Federal charges against U.S. CBP agents for drug trafficking and human smuggling</h2>
-        <p className="text-sm">Data compiled manually by Luke Harold. Coding by Claude.ai. Last updated July 13, 2025.</p>
+        <p className="text-sm">Data compiled manually. Coding by Claude.ai. Last updated April 13, 2025.</p>
         {loading && <span className="text-sm ml-2">Loading incident data...</span>}
       </div>
       
